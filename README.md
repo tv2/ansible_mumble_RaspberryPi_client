@@ -3,32 +3,34 @@
 This Runbook will setup a Headless Mumble on a Raspberry Pi with an Audioinjector soundcard hat
 
 Preperations:
-Put empty file named ’ssh' on image disc to enable ssh
+* Put empty file named ’ssh' on image disc to enable ssh
 
-Boot Raspberry Pi with mounted AudioInjector soundcard
+* Boot Raspberry Pi with mounted AudioInjector soundcard
 
-Login to Raspberry Pi: ssh pi@xx.xx.xx.xx
+* Login to Raspberry Pi: ssh pi@xx.xx.xx.xx
 
-Default Password: raspberry
+    * Default Password: raspberry
 
-Change password: passwd
+* Change password: passwd
 
-add Raspberry Pi to hosts file
+* add Raspberry Pi to hosts file 
+    * copy hosts.example to hosts and edit
 
-Run:  ansible-playbook playbook.yml -i hosts
+* Run:  ansible-playbook playbook.yml -i hosts
 
 -----------------------------------------------
 
 ToDo: in playbook.yml
 
--Set mumble SoundCard setting in Mumble ($HOME/.config/Mumble/Mumble.conf & $HOME/.local/share/data/Mumble/Mumble/.mumble.sqlite)
+* Set mumble SoundCard setting in Mumble 
+    * In file $HOME/.config/Mumble/Mumble.conf
 
--Create certificate for Mumble
+* Create certificate for Mumble and add to Mumble.conf
 
--Settings in alsamixer: (/var/lib/alsa/asound.state)
+* Settings in alsamixer: (/var/lib/alsa/asound.state)
 
-hi-fi mixer ON in outputsection
+    * hi-fi mixer ON in outputsection
 
-Line-in Capture On
+    * Line-in Capture On
 
-Set Input mux to Line in
+    * Set Input mux to Line in
