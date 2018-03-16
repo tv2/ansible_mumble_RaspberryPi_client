@@ -16,3 +16,17 @@ Change password: passwd
 add Raspberry Pi to hosts file
 
 Run:  ansible-playbook playbook.yml -i hosts
+
+-----------------------------------------------
+
+ToDo: in playbook.yml
+
+-Set mumble SoundCard setting in Mumble
+-Accept certificate in Mumble
+-Settings in alsamixer: 
+
+hi-fi mixer ON in outputsection
+
+Line-in Capture On
+
+Set Input mux to Line in
