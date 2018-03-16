@@ -21,9 +21,11 @@ Run:  ansible-playbook playbook.yml -i hosts
 
 ToDo: in playbook.yml
 
--Set mumble SoundCard setting in Mumble
--Accept certificate in Mumble
--Settings in alsamixer: 
+-Set mumble SoundCard setting in Mumble ($HOME/.config/Mumble/Mumble.conf & $HOME/.local/share/data/Mumble/Mumble/.mumble.sqlite)
+
+-Create certificate for Mumble
+
+-Settings in alsamixer: (/var/lib/alsa/asound.state)
 
 hi-fi mixer ON in outputsection
 
