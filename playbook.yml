@@ -43,7 +43,7 @@
     - name: enable Soundjector soundcard driver
       lineinfile:
         dest: /boot/config.txt
-        regexp: ''
+        regexp: 'dtoverlay=audioinjector-wm8731-audio'
         insertafter: EOF
         line: 'dtoverlay=audioinjector-wm8731-audio'
         state: present
@@ -63,25 +63,10 @@
 #  become: yes
 #  passwd:
 
+#Setup Teamviewer or enable VNC?
 
-#Change PI password er standard raspberry
-#Enable SSH og VNC https://wiki.mumble.info/wiki/Mumble_URL
+#Copy alsaconfig to hosts:
 
-#Setup Teamviewer?
-
+#Create certificat for mumble
 
 #Reboot when new changes are added
-
-#Kopier alsaconfig til remotemaskine:
-
-#Fra terminal: alsamixer
-#Alsamixer opsæning:
-#Tænd for hi-fi mixer I output
-#Tænd for Line in Capture
-#Sæt input mux til Line in
-
-#Gem med SUDO ALSACTL STORE
-
-#Vælg lydkort og lydsettings i mumble
-
-#Aktiver certifikat i mumble
