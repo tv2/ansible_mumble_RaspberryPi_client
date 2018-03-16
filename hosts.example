@@ -1,0 +1,10 @@
+# Hostnames for devices 
+
+[mumblepi]
+    Pi01 ansible_ssh_host=192.xxx.xx.xx MUMBLE_FOLDER=xxx
+
+[mumblepi:vars]
+    ansible_user=pi 
+    ansible_ssh_pass=raspberry
+    MUMBLE_SERVER_IP=xx.xx.xx.xx
+    MUMBLE_SERVER_PORT=64738

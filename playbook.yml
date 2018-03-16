@@ -1,0 +1,87 @@
+# Ansible Playbook for installing Mumble on Raspberry Pi with SoundInjector card 
+# 
+#   
+
+- name: Select mumblepi hosts from hosts file
+  hosts: mumblepi
+  become: yes
+
+  tasks:
+    # Update apt packages
+    - name: Update apt packages
+      become: yes
+      apt: 
+        update_cache: yes
+
+    # Upgrade apt packages
+    - name: Upgrade apt packages
+      become: yes
+      apt: 
+        upgrade: dist
+
+    - name: Install Mumble Client
+      become: yes
+      apt:
+        name: mumble
+        state: present
+
+    # Remove Pulse Audio - to avoid conflicts with ALSA:
+    - name: Uninstall Pulse-Audio
+      become: yes
+      apt:
+        name: pulseaudio
+        state: absent
+
+    # Setup SoundCard:
+    - name: disable built-in soundcard driver
+      lineinfile:
+        dest: /boot/config.txt
+        regexp: 'dtparam=audio=on'
+        line: '#dtparam=audio=on'
+        state: present
+        
+    - name: enable Soundjector soundcard driver
+      lineinfile:
+        dest: /boot/config.txt
+        regexp: ''
+        insertafter: EOF
+        line: 'dtoverlay=audioinjector-wm8731-audio'
+        state: present
+
+    # Load Mumble at boot
+    - name: add mumble as bootitem
+      lineinfile:
+        dest: /home/pi/.config/lxsession/LXDE-pi/autostart
+        regexp: ''
+        insertafter: EOF
+        line: '@mumble mumble://{{ inventory_hostname }}@{{ MUMBLE_SERVER_IP }}/Pi/{{ MUMBLE_FOLDER }}/?version=1.2.0'
+        state: present
+
+
+#Set Password for PI:
+#- name: Set pi password
+#  become: yes
+#  passwd:
+
+
+#Change PI password er standard raspberry
+#Enable SSH og VNC https://wiki.mumble.info/wiki/Mumble_URL
+
+#Setup Teamviewer?
+
+
+#Reboot when new changes are added
+
+#Kopier alsaconfig til remotemaskine:
+
+#Fra terminal: alsamixer
+#Alsamixer opsæning:
+#Tænd for hi-fi mixer I output
+#Tænd for Line in Capture
+#Sæt input mux til Line in
+
+#Gem med SUDO ALSACTL STORE
+
+#Vælg lydkort og lydsettings i mumble
+
+#Aktiver certifikat i mumble
