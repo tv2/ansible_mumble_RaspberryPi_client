@@ -25,6 +25,16 @@
         name: mumble
         state: present
 
+    # Install OpenVPN
+    - name: Install OpenVPN
+      become: yes
+      apt:
+        name: openvpn
+        state: present
+
+    # Transfer OpenVPN file  (.ovpn)
+
+
     # Remove Pulse Audio - to avoid conflicts with ALSA:
     - name: Uninstall Pulse-Audio
       become: yes
@@ -52,10 +62,36 @@
     - name: add mumble as bootitem
       lineinfile:
         dest: /home/pi/.config/lxsession/LXDE-pi/autostart
-        regexp: ''
+        regexp: '@mumble mumble'
         insertafter: EOF
         line: '@mumble mumble://{{ inventory_hostname }}@{{ MUMBLE_SERVER_IP }}/Pi/{{ MUMBLE_FOLDER }}/?version=1.2.0'
         state: present
+
+    # Load OpenVPN at boot:
+    - name: add OpenVPN on boot
+      lineinfile:
+        dest: /home/pi/.config/lxsession/LXDE-pi/autostart
+        regexp: 'sudo openvpn'
+        insertafter: EOF
+        line: '@sudo openvpn --config ~/RemoteDesktop{{ inventory_hostname }}.ovpn'
+        state: present
+
+# ToDOs:
+
+    # Install Adafruit Retrogame
+    # https://github.com/adafruit/Adafruit-Retrogame.git
+
+
+    #Transfer retrogame.cnf file
+    #Defines F1-F8 shortcuts on GPI
+
+    # ALSA mixer setting
+#    - name: add ALSA mixer settings
+
+    # Mumble Settings
+#    - name: add Mumble Seetings file
+
+    # Create Mumble certificate
 
 
 #Set Password for PI:
@@ -64,9 +100,5 @@
 #  passwd:
 
 #Setup Teamviewer or enable VNC?
-
-#Copy alsaconfig to hosts:
-
-#Create certificat for mumble
 
 #Reboot when new changes are added
