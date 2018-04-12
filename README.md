@@ -22,15 +22,7 @@ Preperations:
 
 ToDo: in playbook.yml
 
-* Set mumble SoundCard setting in Mumble 
-    * In file $HOME/.config/Mumble/Mumble.conf
 
 * Create certificate for Mumble and add to Mumble.conf
 
-* Settings in alsamixer: (/var/lib/alsa/asound.state)
-
-    * hi-fi mixer ON in outputsection
-
-    * Line-in Capture On
-
-    * Set Input mux to Line in
+* Setup GPI trig based on https://github.com/adafruit/Adafruit-Retrogame.git
